@@ -1,10 +1,14 @@
 import React from 'react';
+import Routes from './Routes';
+import NavHeader from './components/NavHeader/NavHeader';
+import { Container } from 'reactstrap';
 
 function App() {
     return (
-        <div>
-            <h1>app component</h1>
-        </div>
+        <Container>
+            <NavHeader />
+            <Routes />
+        </Container>
     );
 }
 
