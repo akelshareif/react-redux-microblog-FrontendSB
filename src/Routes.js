@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import PostFormPage from './components/PostForm/PostFormPage';
 
 const Routes = () => {
     return (
@@ -8,7 +9,7 @@ const Routes = () => {
                 {/* Home page component */}
             </Route>
             <Route exact path="/new">
-                {/* New post page with form */}
+                <PostFormPage />
             </Route>
             <Route exact path="/:id">
                 {/* Page showing a post */}
