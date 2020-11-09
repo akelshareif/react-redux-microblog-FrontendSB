@@ -14,7 +14,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             };
 
         case DELETE_POST:
-            const postsCopy = Object.assign({}, state.posts);
+            const postsCopy = { ...state.posts };
             delete postsCopy[action.postID];
             return {
                 ...state,
@@ -24,7 +24,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             };
 
         case ADD_COMMENT:
-            const post = Object.assign({}, state.posts[action.postID]);
+            const post = { ...state.posts[action.postID] };
             post.comments = [...post.comments, { id: action.id, comment: action.comment }];
             return {
                 ...state,
@@ -40,7 +40,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             };
 
         case DELETE_COMMENT:
-            const commentedPost = Object.assign({}, state.posts[action.postID]);
+            const commentedPost = { ...state.posts[action.postID] };
             commentedPost.comments = commentedPost.comments.filter((c) => c.id !== action.id);
             return {
                 ...state,
