@@ -7,15 +7,23 @@ import { v4 as uuid } from 'uuid';
 import { addPost } from '../../actions';
 import './PostForm.css';
 
-const PostForm = () => {
+const PostForm = ({ post }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        body: '',
-    });
+    const INITIAL_STATE = post
+        ? {
+              title: post.title,
+              description: post.description,
+              body: post.body,
+          }
+        : {
+              title: '',
+              description: '',
+              body: '',
+          };
+
+    const [formData, setFormData] = useState(INITIAL_STATE);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,7 +35,11 @@ const PostForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addPost({ id: uuid(), data: formData }));
+        if (post) {
+            dispatch(addPost({ id: post.id, data: formData }));
+        } else {
+            dispatch(addPost({ id: uuid(), data: formData }));
+        }
         history.push('/');
     };
 

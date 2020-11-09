@@ -4,7 +4,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Home from './components/Home/Home';
 import PostFormPage from './components/PostForm/PostFormPage';
-import PostView from './components/PostView/PostView';
+import PostView from './components/Post/PostView';
 
 const Routes = () => {
     const posts = useSelector((state) => state.posts);

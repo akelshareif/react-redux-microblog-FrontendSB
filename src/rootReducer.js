@@ -1,17 +1,7 @@
-/** Reducer Notes
- * State
- * - intialize to empty object
- * - will populate with keys of postIds
- * - each key will eval to an object with post title, description, body, and comments-array
- * Actions
- * - ADD_POST (doubles as edit)
- * - DELETE_POST
- * - ADD_COMMENT
- * - DELETE_COMMENT
- */
 import { ADD_POST, ADD_COMMENT, DELETE_POST, DELETE_COMMENT } from './actionTypes';
 
 const INITIAL_STATE = { posts: {} };
+
 const rootReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ADD_POST:
@@ -24,6 +14,14 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             };
 
         case DELETE_POST:
+            const postsCopy = Object.assign({}, state.posts);
+            delete postsCopy[action.postID];
+            return {
+                ...state,
+                posts: {
+                    ...postsCopy,
+                },
+            };
         case ADD_COMMENT:
         case DELETE_COMMENT:
         default:
