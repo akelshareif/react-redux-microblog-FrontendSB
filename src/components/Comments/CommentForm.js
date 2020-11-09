@@ -15,7 +15,7 @@ const CommentForm = () => {
     };
 
     return (
-        <Form onSubmit={handleSubmit} className="mt-3">
+        <Form onSubmit={handleSubmit} className="mt-4">
             <Input
                 type="text"
                 name="comment"

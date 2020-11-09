@@ -67,12 +67,14 @@ const PostForm = () => {
                     value={formData.body}
                 />
             </FormGroup>
-            <Button type="submit" size="lg" color="primary" className="mr-3">
-                Save
-            </Button>
-            <Button type="button" tag={Link} to="/" size="lg">
-                Cancel
-            </Button>
+            <div className="text-right">
+                <Button type="submit" size="lg" color="primary" className="mr-3">
+                    Save
+                </Button>
+                <Button type="button" tag={Link} to="/" size="lg">
+                    Cancel
+                </Button>
+            </div>
         </Form>
     );
 };
