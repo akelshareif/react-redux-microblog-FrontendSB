@@ -3,13 +3,13 @@ import Routes from './Routes';
 import NavHeader from './components/NavHeader/NavHeader';
 import { Container } from 'reactstrap';
 
-function App() {
+const App = () => {
     return (
         <Container>
             <NavHeader />
             <Routes />
         </Container>
     );
-}
+};
 
 export default App;

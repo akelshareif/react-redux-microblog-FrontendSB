@@ -1,10 +1,12 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
+
 import PostFormPage from './components/PostForm/PostFormPage';
+import PostView from './components/PostView/PostView';
 
 const Routes = () => {
     return (
-        <>
+        <Switch>
             <Route exact path="/">
                 {/* Home page component */}
             </Route>
@@ -12,10 +14,10 @@ const Routes = () => {
                 <PostFormPage />
             </Route>
             <Route exact path="/:id">
-                {/* Page showing a post */}
+                <PostView />
             </Route>
             <Redirect to="/" />
-        </>
+        </Switch>
     );
 };
 
