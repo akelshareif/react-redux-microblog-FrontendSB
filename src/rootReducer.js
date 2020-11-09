@@ -38,7 +38,23 @@ const rootReducer = (state = INITIAL_STATE, action) => {
                     },
                 },
             };
+
         case DELETE_COMMENT:
+            const commentedPost = Object.assign({}, state.posts[action.postID]);
+            commentedPost.comments = commentedPost.comments.filter((c) => c.id !== action.id);
+            return {
+                ...state,
+                posts: {
+                    ...state.posts,
+                    [action.postID]: {
+                        title: commentedPost.title,
+                        description: commentedPost.description,
+                        body: commentedPost.body,
+                        comments: commentedPost.comments,
+                    },
+                },
+            };
+
         default:
             return state;
     }

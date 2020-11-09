@@ -12,7 +12,7 @@ const Comments = () => {
         <>
             <ListGroup>
                 {data.comments.map(({ id, comment }) => (
-                    <CommentCard key={id} comment={comment} />
+                    <CommentCard key={id} id={id} postID={data.postID} comment={comment} />
                 ))}
             </ListGroup>
         </>

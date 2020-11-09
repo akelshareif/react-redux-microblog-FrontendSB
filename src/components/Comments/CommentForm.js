@@ -37,7 +37,7 @@ const CommentForm = () => {
             />
             <div className=" mt-2 text-right">
                 <Button type="submit" color="primary">
-                    Add
+                    Add Comment
                 </Button>
             </div>
         </Form>
