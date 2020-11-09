@@ -9,7 +9,7 @@ const NavHeader = () => {
         <div>
             <Jumbotron className="mt-3">
                 <h1 className="display-3">Microblog</h1>
-                <p className="lead NavHeader-text">Get in the Rithm of blogging!</p>
+                <p className="font-weight-light NavHeader-text">Get in the Rithm of blogging!</p>
                 <div className=" mt-2 NavHeader-links">
                     <Link to="/" className="mr-3">
                         Blog
