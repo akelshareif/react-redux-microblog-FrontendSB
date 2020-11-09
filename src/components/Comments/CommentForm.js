@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 import { Form, Input, Button } from 'reactstrap';
+
+import CommentsContext from '../../commentsContext';
+import { addComment } from '../../actions';
 
 const CommentForm = () => {
     const [comment, setComment] = useState('');
 
+    const { postID } = useContext(CommentsContext);
+    const dispatch = useDispatch();
+
     const handleChange = (e) => {
         const { value } = e.target;
-        setComment((text) => (text += value));
+        setComment(value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(comment);
+        dispatch(addComment({ id: uuid(), postID, comment }));
+        setComment('');
     };
 
     return (
@@ -24,6 +33,7 @@ const CommentForm = () => {
                 bsSize="lg"
                 placeholder="Enter new comment here"
                 onChange={handleChange}
+                value={comment}
             />
             <div className=" mt-2 text-right">
                 <Button type="submit" color="primary">

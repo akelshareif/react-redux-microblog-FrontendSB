@@ -4,17 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Card, CardBody } from 'reactstrap';
 
 import { deletePost } from '../../actions';
+import CommentsContext from '../../commentsContext';
 
 import Post from './Post';
 import PostForm from '../PostForm/PostForm';
-import CommentList from '../Comments/CommentList';
-import CommentForm from '../Comments/CommentForm';
+import Comments from '../Comments/Comments';
 
 const PostView = () => {
-    const [isEdit, setIsEdit] = useState(false);
-
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [isEdit, setIsEdit] = useState(false);
 
     const { id } = useParams();
 
@@ -42,8 +42,12 @@ const PostView = () => {
             <hr className="my-2 mx-2" />
 
             <CardBody>
-                <CommentList />
-                <CommentForm />
+                {/* <CommentsContext.Provider
+                    value={'comments' in post ? { postID: id, comments: post.comments } : { postID: id }}
+                > */}
+                <CommentsContext.Provider value={{ postID: id, comments: post.comments }}>
+                    <Comments />
+                </CommentsContext.Provider>
             </CardBody>
         </Card>
     );

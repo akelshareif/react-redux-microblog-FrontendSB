@@ -14,9 +14,11 @@ export const deletePost = (postID) => {
     };
 };
 
-export const addComment = (comment) => {
+export const addComment = ({ id, postID, comment }) => {
     return {
         type: ADD_COMMENT,
+        id,
+        postID,
         comment,
     };
 };

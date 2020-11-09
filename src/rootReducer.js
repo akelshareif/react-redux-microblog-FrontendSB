@@ -22,7 +22,22 @@ const rootReducer = (state = INITIAL_STATE, action) => {
                     ...postsCopy,
                 },
             };
+
         case ADD_COMMENT:
+            const post = Object.assign({}, state.posts[action.postID]);
+            post.comments = [...post.comments, { id: action.id, comment: action.comment }];
+            return {
+                ...state,
+                posts: {
+                    ...state.posts,
+                    [action.postID]: {
+                        title: post.title,
+                        description: post.description,
+                        body: post.body,
+                        comments: post.comments,
+                    },
+                },
+            };
         case DELETE_COMMENT:
         default:
             return state;

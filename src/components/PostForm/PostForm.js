@@ -36,9 +36,11 @@ const PostForm = ({ post }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (post) {
-            dispatch(addPost({ id: post.id, data: formData }));
+            // updates post
+            dispatch(addPost({ id: post.id, data: { ...formData, comments: post.comments } }));
         } else {
-            dispatch(addPost({ id: uuid(), data: formData }));
+            // creates new post
+            dispatch(addPost({ id: uuid(), data: { ...formData, comments: [] } }));
         }
         history.push('/');
     };

@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ListGroup } from 'reactstrap';
 
+import CommentsContext from '../../commentsContext';
 import CommentCard from './CommentCard';
 
 // This displays all the comments
-
 const Comments = () => {
-    return (
+    const data = useContext(CommentsContext);
+
+    return data.comments.length > 0 ? (
         <>
-            <h4 className="font-weight-light">Comments</h4>
             <ListGroup>
-                <CommentCard />
-                <CommentCard />
-                <CommentCard />
+                {data.comments.map(({ id, comment }) => (
+                    <CommentCard key={id} comment={comment} />
+                ))}
             </ListGroup>
         </>
+    ) : (
+        <div className="font-italic text-center text-muted">No comments yet...</div>
     );
 };
 
