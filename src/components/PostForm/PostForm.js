@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { v4 as uuid } from 'uuid';
+
+import { addPost } from '../../actions';
 import './PostForm.css';
 
 const PostForm = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const [formData, setFormData] = useState({
@@ -22,7 +27,7 @@ const PostForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        dispatch(addPost({ id: uuid(), data: formData }));
         history.push('/');
     };
 
