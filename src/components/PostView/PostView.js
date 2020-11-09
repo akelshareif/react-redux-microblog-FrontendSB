@@ -2,6 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col } from 'reactstrap';
 
+import CommentList from '../Comments/CommentList';
+import CommentForm from '../Comments/CommentForm';
+
 const PostView = () => {
     const { id } = useParams();
 
@@ -10,7 +13,7 @@ const PostView = () => {
     const handleDelete = () => {};
 
     return (
-        <Card>
+        <Card className="mb-4">
             <CardBody>
                 <Row className="justify-content-between">
                     <Col md="5">
@@ -43,6 +46,13 @@ const PostView = () => {
                         </CardText>
                     </Col>
                 </Row>
+            </CardBody>
+
+            <hr className="my-2 mx-2" />
+
+            <CardBody>
+                <CommentList />
+                <CommentForm />
             </CardBody>
         </Card>
     );

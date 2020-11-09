@@ -14,9 +14,6 @@ const Home = () => {
                 <Col md="6" className="mb-2">
                     <PostCard />
                 </Col>
-                <Col md="6">
-                    <PostCard />
-                </Col>
             </Row>
         </div>
     );
