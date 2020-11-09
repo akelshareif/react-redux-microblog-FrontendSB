@@ -12,7 +12,7 @@ const Routes = () => {
     return (
         <Switch>
             <Route exact path="/">
-                <Home />
+                <Home posts={posts} />
             </Route>
             <Route exact path="/new">
                 <PostFormPage />

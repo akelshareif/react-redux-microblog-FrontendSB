@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
     return (
         <Card>
             <CardBody>
                 <CardTitle tag="h4">
-                    <Link to="/" className="text-decoration-none">
-                        Card title
+                    <Link to={`/${post.id}`} className="text-decoration-none text-capitalize">
+                        {post.title}
                     </Link>
                 </CardTitle>
-                <CardText className="font-italic lead">This is the desxcription of the card.</CardText>
+                <CardText className="font-italic lead">{post.description}</CardText>
             </CardBody>
         </Card>
     );
