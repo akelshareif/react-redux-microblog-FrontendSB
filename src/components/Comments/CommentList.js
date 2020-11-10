@@ -11,8 +11,8 @@ const Comments = () => {
     return data.comments.length > 0 ? (
         <>
             <ListGroup>
-                {data.comments.map(({ id, comment }) => (
-                    <CommentCard key={id} id={id} postID={data.postID} comment={comment} />
+                {data.comments.map(({ id, text }) => (
+                    <CommentCard key={id} id={id} postID={data.postID} comment={text} />
                 ))}
             </ListGroup>
         </>

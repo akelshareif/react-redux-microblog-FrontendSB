@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { v4 as uuid } from 'uuid';
 
-import { addPost } from '../../actions';
+import { createPost, updatePost } from '../../actions';
 import './PostForm.css';
 
 const PostForm = ({ post }) => {
@@ -37,10 +37,10 @@ const PostForm = ({ post }) => {
         e.preventDefault();
         if (post) {
             // updates post
-            dispatch(addPost({ id: post.id, data: { ...formData, comments: post.comments } }));
+            dispatch(updatePost({ id: post.id, ...formData, comments: post.comments, votes: post.votes }));
         } else {
             // creates new post
-            dispatch(addPost({ id: uuid(), data: { ...formData, comments: [] } }));
+            dispatch(createPost({ ...formData }));
         }
         history.push('/');
     };

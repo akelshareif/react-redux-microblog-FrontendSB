@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, CardBody } from 'reactstrap';
 
-import { deletePost } from '../../actions';
+import { deletePost, getPost } from '../../actions';
 import CommentsContext from '../../commentsContext';
 
 import Post from './Post';
@@ -18,6 +18,10 @@ const PostView = () => {
 
     const { id } = useParams();
 
+    useEffect(() => {
+        dispatch(getPost(id));
+    }, [dispatch, id]);
+
     const post = useSelector((state) => state.posts[id]);
 
     const handleEdit = () => {
@@ -28,6 +32,10 @@ const PostView = () => {
         dispatch(deletePost(id));
         history.push('/');
     };
+
+    if (!post) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <Card className="mb-4">
@@ -42,9 +50,6 @@ const PostView = () => {
             <hr className="my-2 mx-2" />
 
             <CardBody>
-                {/* <CommentsContext.Provider
-                    value={'comments' in post ? { postID: id, comments: post.comments } : { postID: id }}
-                > */}
                 <CommentsContext.Provider value={{ postID: id, comments: post.comments }}>
                     <Comments />
                 </CommentsContext.Provider>
