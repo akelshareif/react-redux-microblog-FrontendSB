@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { v4 as uuid } from 'uuid';
 
 import { createPost, updatePost } from '../../actions';
 import './PostForm.css';

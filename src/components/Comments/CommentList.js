@@ -4,7 +4,6 @@ import { ListGroup } from 'reactstrap';
 import CommentsContext from '../../commentsContext';
 import CommentCard from './CommentCard';
 
-// This displays all the comments
 const Comments = () => {
     const data = useContext(CommentsContext);
 

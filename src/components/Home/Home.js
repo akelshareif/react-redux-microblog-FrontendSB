@@ -4,7 +4,7 @@ import { Row, Col } from 'reactstrap';
 
 import { getTitles } from '../../actions';
 
-import PostCard from './PostCard';
+import PostCard from '../Post/PostCard';
 import './Home.css';
 
 const Home = () => {
