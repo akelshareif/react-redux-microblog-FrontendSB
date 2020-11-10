@@ -38,19 +38,51 @@ export const createPost = (post) => {
     };
 };
 
-// update needs work
 export const updatePost = (post) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.put(`${BASE_URL}/${post.id}`, post);
             dispatch(updatedPost(data));
+            dispatch(getTitles());
         } catch (e) {
             console.error('API ERROR: ', e);
         }
     };
 };
 
-export const savePost = (post) => {};
+export const removePost = (postID) => {
+    return async (dispatch) => {
+        try {
+            await axios.delete(`${BASE_URL}/${postID}`);
+            dispatch(deletePost(postID));
+            dispatch(getTitles());
+        } catch (e) {
+            console.error('API ERROR: ', e);
+        }
+    };
+};
+
+export const createComment = (postID, text) => {
+    return async (dispatch) => {
+        try {
+            const { data: comment } = await axios.post(`${BASE_URL}/${postID}/comments`, { text });
+            dispatch(addComment(postID, comment));
+        } catch (e) {
+            console.error('API ERROR: ', e);
+        }
+    };
+};
+
+export const removeComment = (commentID, postID) => {
+    return async (dispatch) => {
+        try {
+            await axios.delete(`${BASE_URL}/${postID}/comments/${commentID}`);
+            dispatch(deleteComment(commentID, postID));
+        } catch (e) {
+            console.error('API ERROR: ', e);
+        }
+    };
+};
 
 // ********* Basic action creators ***************
 const gotTitles = (titles) => {
@@ -67,40 +99,39 @@ const gotPost = (post) => {
     };
 };
 
-export const addPost = (post) => {
+const addPost = (post) => {
     return {
         type: ADD_POST,
         post,
     };
 };
 
-export const updatedPost = (post) => {
+const updatedPost = (post) => {
     return {
         type: UPDATE_POST,
         post,
     };
 };
 
-export const deletePost = (postID) => {
+const deletePost = (postID) => {
     return {
         type: DELETE_POST,
         postID,
     };
 };
 
-export const addComment = ({ id, postID, comment }) => {
+const addComment = (postID, comment) => {
     return {
         type: ADD_COMMENT,
-        id,
         postID,
         comment,
     };
 };
 
-export const deleteComment = ({ id, postID }) => {
+const deleteComment = (commentID, postID) => {
     return {
         type: DELETE_COMMENT,
-        id,
+        commentID,
         postID,
     };
 };

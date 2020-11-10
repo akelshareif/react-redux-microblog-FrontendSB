@@ -6,7 +6,9 @@ const Post = ({ post, editPost, deletePost }) => {
         <>
             <Row className="justify-content-between">
                 <Col md="5">
-                    <CardTitle tag="h2">{post.title}</CardTitle>
+                    <CardTitle tag="h2" className="text-capitalize">
+                        {post.title}
+                    </CardTitle>
                 </Col>
                 <Col xs="5" className="text-right">
                     <Button onClick={editPost} color="primary" className="mr-4">

@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, CardBody } from 'reactstrap';
 
-import { deletePost, getPost } from '../../actions';
+import { getPost, removePost } from '../../actions';
 import CommentsContext from '../../commentsContext';
 
 import Post from './Post';
@@ -29,7 +29,7 @@ const PostView = () => {
     };
 
     const handleDelete = () => {
-        dispatch(deletePost(id));
+        dispatch(removePost(id));
         history.push('/');
     };
 

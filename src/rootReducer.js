@@ -37,13 +37,16 @@ const rootReducer = (state = INITIAL_STATE, action) => {
 
         case UPDATE_POST:
             return {
-                ...state.posts,
-                [action.post.id]: {
-                    title: action.post.title,
-                    description: action.post.description,
-                    body: action.post.body,
-                    votes: action.post.votes,
-                    comments: action.post.comments,
+                ...state,
+                posts: {
+                    ...state.posts,
+                    [action.post.id]: {
+                        title: action.post.title,
+                        description: action.post.description,
+                        body: action.post.body,
+                        votes: action.post.votes,
+                        comments: action.post.comments || [],
+                    },
                 },
             };
 
@@ -59,7 +62,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
 
         case ADD_COMMENT:
             const post = { ...state.posts[action.postID] };
-            post.comments = [...post.comments, { id: action.id, comment: action.comment }];
+            post.comments = [...post.comments, { id: action.comment.id, text: action.comment.text }];
             return {
                 ...state,
                 posts: {
@@ -75,7 +78,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
 
         case DELETE_COMMENT:
             const commentedPost = { ...state.posts[action.postID] };
-            commentedPost.comments = commentedPost.comments.filter((c) => c.id !== action.id);
+            commentedPost.comments = commentedPost.comments.filter((c) => c.id !== action.commentID);
             return {
                 ...state,
                 posts: {

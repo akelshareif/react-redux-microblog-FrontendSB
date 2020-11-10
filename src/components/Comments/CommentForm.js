@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { Form, Input, Button } from 'reactstrap';
 
 import CommentsContext from '../../commentsContext';
-import { addComment } from '../../actions';
+import { createComment } from '../../actions';
 
 const CommentForm = () => {
     const [comment, setComment] = useState('');
@@ -19,7 +19,7 @@ const CommentForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addComment({ id: uuid(), postID, comment }));
+        dispatch(createComment(postID, comment));
         setComment('');
     };
 

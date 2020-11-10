@@ -2,13 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { ListGroupItem, Row, Col, Button } from 'reactstrap';
 
-import { deleteComment } from '../../actions';
+import { removeComment } from '../../actions';
 
 const CommentCard = ({ id, postID, comment }) => {
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        dispatch(deleteComment({ id, postID }));
+        dispatch(removeComment(id, postID));
     };
 
     return (
