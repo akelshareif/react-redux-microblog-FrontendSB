@@ -16,6 +16,10 @@ const Home = () => {
 
     const titles = useSelector((state) => state.titles);
 
+    if (!titles) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div>
             <p className="font-weight-light Home-text">
@@ -24,7 +28,7 @@ const Home = () => {
             <Row className="justify-content-between">
                 {titles.map(({ id, title, description, votes }) => (
                     <Col key={id} md="6" className="mb-2">
-                        <PostCard post={{ id, title, description }} />
+                        <PostCard post={{ id, title, description, votes }} />
                     </Col>
                 ))}
             </Row>

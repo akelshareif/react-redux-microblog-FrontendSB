@@ -1,5 +1,14 @@
 import axios from 'axios';
-import { GOT_TITLES, GOT_POST, ADD_POST, UPDATE_POST, DELETE_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes';
+import {
+    GOT_TITLES,
+    GOT_POST,
+    ADD_POST,
+    UPDATE_POST,
+    DELETE_POST,
+    ADD_COMMENT,
+    DELETE_COMMENT,
+    UPDATE_VOTE,
+} from './actionTypes';
 
 const BASE_URL = 'http://localhost:5000/api/posts';
 
@@ -84,6 +93,20 @@ export const removeComment = (commentID, postID) => {
     };
 };
 
+export const vote = (voteType, postID) => {
+    return async (dispatch) => {
+        try {
+            const {
+                data: { votes },
+            } = await axios.post(`${BASE_URL}/${postID}/vote/${voteType}`);
+            dispatch(updateVote(votes, postID));
+            dispatch(getTitles());
+        } catch (e) {
+            console.error('API ERROR: ', e);
+        }
+    };
+};
+
 // ********* Basic action creators ***************
 const gotTitles = (titles) => {
     return {
@@ -132,6 +155,14 @@ const deleteComment = (commentID, postID) => {
     return {
         type: DELETE_COMMENT,
         commentID,
+        postID,
+    };
+};
+
+const updateVote = (votes, postID) => {
+    return {
+        type: UPDATE_VOTE,
+        votes,
         postID,
     };
 };

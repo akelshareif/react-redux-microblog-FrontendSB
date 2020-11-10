@@ -43,7 +43,7 @@ const PostView = () => {
                 {isEdit ? (
                     <PostForm post={{ id, ...post }} />
                 ) : (
-                    <Post post={post} editPost={handleEdit} deletePost={handleDelete} />
+                    <Post post={{ id, ...post }} editPost={handleEdit} deletePost={handleDelete} />
                 )}
             </CardBody>
 

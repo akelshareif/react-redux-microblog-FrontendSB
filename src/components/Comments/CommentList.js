@@ -8,6 +8,10 @@ import CommentCard from './CommentCard';
 const Comments = () => {
     const data = useContext(CommentsContext);
 
+    if (!data.comments) {
+        return <div>Loading...</div>;
+    }
+
     return data.comments.length > 0 ? (
         <>
             <ListGroup>

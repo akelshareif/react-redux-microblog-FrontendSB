@@ -1,16 +1,18 @@
 import React from 'react';
 import { Row, Col, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 
+import Votes from '../Votes/Votes';
+
 const Post = ({ post, editPost, deletePost }) => {
     return (
         <>
             <Row className="justify-content-between">
-                <Col md="5">
+                <Col>
                     <CardTitle tag="h2" className="text-capitalize">
                         {post.title}
                     </CardTitle>
                 </Col>
-                <Col xs="5" className="text-right">
+                <Col className="text-right">
                     <Button onClick={editPost} color="primary" className="mr-4">
                         <i className="far fa-edit"></i>
                     </Button>
@@ -20,11 +22,14 @@ const Post = ({ post, editPost, deletePost }) => {
                 </Col>
             </Row>
 
-            <Row className="mt-2">
+            <Row className="mt-2 align-items-center">
                 <Col>
                     <CardSubtitle tag="h6" className="text-muted">
                         {post.description}
                     </CardSubtitle>
+                </Col>
+                <Col className="text-right">
+                    <Votes votes={post.votes} postID={post.id} />
                 </Col>
             </Row>
 

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { v4 as uuid } from 'uuid';
 import { Form, Input, Button } from 'reactstrap';
 
 import CommentsContext from '../../commentsContext';

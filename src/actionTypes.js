@@ -5,3 +5,4 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const GOT_TITLES = 'GOT_TITLES';
 export const GOT_POST = 'GOT_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+export const UPDATE_VOTE = 'UPDATE_VOTE';

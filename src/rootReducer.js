@@ -1,4 +1,13 @@
-import { GOT_TITLES, GOT_POST, ADD_POST, UPDATE_POST, DELETE_POST, ADD_COMMENT, DELETE_COMMENT } from './actionTypes';
+import {
+    GOT_TITLES,
+    GOT_POST,
+    ADD_POST,
+    UPDATE_POST,
+    DELETE_POST,
+    ADD_COMMENT,
+    DELETE_COMMENT,
+    UPDATE_VOTE,
+} from './actionTypes';
 
 const INITIAL_STATE = { posts: {}, titles: [] };
 
@@ -71,6 +80,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
                         title: post.title,
                         description: post.description,
                         body: post.body,
+                        votes: post.votes,
                         comments: post.comments,
                     },
                 },
@@ -87,7 +97,21 @@ const rootReducer = (state = INITIAL_STATE, action) => {
                         title: commentedPost.title,
                         description: commentedPost.description,
                         body: commentedPost.body,
+                        votes: commentedPost.votes,
                         comments: commentedPost.comments,
+                    },
+                },
+            };
+
+        case UPDATE_VOTE:
+            const votedPost = { ...state.posts[action.postID] };
+            return {
+                ...state,
+                posts: {
+                    ...state.posts,
+                    [action.postID]: {
+                        ...votedPost,
+                        votes: action.votes,
                     },
                 },
             };
